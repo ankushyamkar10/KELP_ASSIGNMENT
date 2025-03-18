@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import pool from "./database";
+import uploadRoutes from "./upload";
 
 dotenv.config();
 
@@ -35,6 +36,8 @@ app.get("/health", (req, res) => {
     timestamp: new Date().toISOString(),
   });
 });
+
+app.use("/api", uploadRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
