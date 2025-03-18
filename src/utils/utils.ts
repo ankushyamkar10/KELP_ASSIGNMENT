@@ -1,5 +1,23 @@
 import pool from "../config/db";
 
+export const initializeDatabase = async () => {
+  try {
+    await pool.query(`
+      CREATE TABLE IF NOT EXISTS users (
+        id SERIAL PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        age INTEGER,
+        address JSONB,
+        additional_info JSONB
+      )
+    `);
+    console.log("Database initialized successfully");
+  } catch (error) {
+    console.error("Error initializing database:", error);
+    process.exit(1);
+  }
+};
+
 export const parseNestedFields = (flatObject: any): any => {
   const nestedObject: any = { address: {}, additional_info: {} };
 
