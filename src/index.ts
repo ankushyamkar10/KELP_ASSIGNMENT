@@ -1,6 +1,5 @@
 import express from "express";
 import dotenv from "dotenv";
-import pool from "./config/db";
 import uploadRoutes from "./controllers/userController";
 import { initializeDatabase } from "./utils/utils";
 

@@ -73,7 +73,6 @@ const uploadUsers: RequestHandler = async (req, res, next): Promise<void> => {
 
           res.json({
             message: "CSV uploaded and processed successfully",
-            ageDistribution,
           });
         } catch (err) {
           next(err);
