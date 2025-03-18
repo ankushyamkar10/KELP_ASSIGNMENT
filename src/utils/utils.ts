@@ -1,4 +1,4 @@
-import pool from "./database";
+import pool from "../config/db";
 
 export const parseNestedFields = (flatObject: any): any => {
   const nestedObject: any = { address: {}, additional_info: {} };

@@ -7,12 +7,12 @@ import express, {
 import fileUpload, { UploadedFile } from "express-fileupload";
 import fs from "fs";
 import { parse } from "fast-csv";
-import pool from "./database";
+import pool from "../config/db";
 import {
   calculateAgeDistribution,
   parseNestedFields,
   printAgeDistribution,
-} from "./utils";
+} from "../utils/utils";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -56,7 +56,7 @@ const uploadUsers: RequestHandler = async (req, res, next): Promise<void> => {
 
             const result = await pool.query(
               `INSERT INTO users (name, age, address, additional_info) 
-               VALUES ($1, $2, $3, $4) RETURNING id`,
+                 VALUES ($1, $2, $3, $4) RETURNING id`,
               [
                 `${name.firstName} ${name.lastName}`,
                 age,
@@ -124,4 +124,5 @@ const truncateUsers: RequestHandler = async (
 };
 
 router.route("/users").delete(truncateUsers).post(uploadUsers).get(getAllUsers);
+
 export default router;

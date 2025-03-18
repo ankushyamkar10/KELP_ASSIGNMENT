@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
-import pool from "./database";
-import uploadRoutes from "./upload";
+import pool from "./config/db";
+import uploadRoutes from "./controllers/userController";
 
 dotenv.config();
 
